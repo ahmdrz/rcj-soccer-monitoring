@@ -22,8 +22,11 @@ float pcounter = 1.0;
 int imax = 80;
 String totalName = "Ayric Robotic Team Production";
 int rectSize;
-boolean startProgram = false;
+boolean startProgram = true;
 boolean startZooming = true;
+
+int positionx = 0;
+int positiony = 0;
 
 void setup()
 {  
@@ -119,15 +122,21 @@ void draw()
         console.setMax((height/10) / 10);
       }      
       pushMatrix();
-      pist.draw(); 
+      pist.draw();
+      
+        pist.ball.x = width/2 + positionx;
+        pist.ball.y = height/2 + positiony;
+        pist.ball.co = pist.B;
+        pist.ball.draw();
         pist.RobotF.co = pist.F;
         pist.RobotF.px = width/2;
-        pist.RobotF.py = height/2;
+        pist.RobotF.py = height/2 + pist.h/8;
         pist.RobotF.draw();
         pist.RobotG.co = pist.G;
         pist.RobotG.px = width/2;
         pist.RobotG.py = height/2 + pist.h/4;
         pist.RobotG.draw();
+        
       popMatrix();  
       
       pushMatrix();
@@ -157,6 +166,14 @@ void mouseWheel(MouseEvent event) {
     pist.mx += e*5;
   if ( key == 'n')
     pist.my += e*5;
-  
+    
+  if ( key == 'w')
+    positiony+=e;
+  if ( key == 's')
+    positiony-=e;
+  if (key == 'a')
+    positionx-=e;
+  if (key == 'd')
+    positionx+=e;
   println("Mouse Wheel : RX(" + pist.rx+") RY(" + pist.ry +") RZ(" + pist.rz +")");
 }

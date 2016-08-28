@@ -27,6 +27,7 @@ class Pist {
   
   public color F = color(100,200,100);
   public color G = color(200,100,100);
+  public color B = color(100,200,200);
   
   public float err = 1.0;   
   public int tscale = 1;
@@ -65,6 +66,23 @@ class Pist {
     }
   }
   
+  class Ball {
+     public int x;
+     public int y;
+     private int h = 5;
+     public color co;
+     
+     void draw() {
+         fill(co);
+         stroke(co);
+         strokeWeight(1);
+         dotranslate(x,int(y + h/2),int(d+err));
+         sphere(h);
+         untranslate();
+     }
+  }
+    
+  Ball ball = new Ball();
   Robot RobotF = new Robot();
   Robot RobotG = new Robot();
   
